@@ -18,7 +18,7 @@ public class islemler {
                 urunTanımla();
                 girisPaneli();
                 break;
-            case "2": //Jasmina, zeynep
+            case "2": //Jasmina, zeynep, merve
                 urunListele();
                 girisPaneli();
                 break;
