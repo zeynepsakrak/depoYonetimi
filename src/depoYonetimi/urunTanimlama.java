@@ -2,7 +2,7 @@ package depoYonetimi;
 
 public class urunTanimlama {
 
-    static String urunId;
+    static int urunId;
     static String urunIsmi;
     static String uretici;
     static String birim;
@@ -13,7 +13,7 @@ public class urunTanimlama {
 
     }
 
-    public urunTanimlama(String urunId, String urunIsmi, String uretici, String birim, int urunMiktar, String raf) {
+    public urunTanimlama(int urunId, String urunIsmi, String uretici, String birim, int urunMiktar, String raf) {
       this.urunId=urunId;
       this.urunIsmi=urunIsmi;
       this.uretici=uretici;
@@ -21,18 +21,18 @@ public class urunTanimlama {
       this.urunMiktar=urunMiktar;
       this.raf=raf;
     }
-    public urunTanimlama(String urunId, String urunIsmi, String uretici, String birim) {
+    public urunTanimlama(int urunId, String urunIsmi, String uretici, String birim) {
         this.urunId=urunId;
         this.urunIsmi=urunIsmi;
         this.uretici=uretici;
         this.birim=birim;
     }
 
-    public static String getUrunId() {
+    public static int getUrunId() {
         return urunId;
     }
 
-    public static void setUrunId(String urunId) {
+    public static void setUrunId(int urunId) {
         urunTanimlama.urunId = urunId;
     }
 

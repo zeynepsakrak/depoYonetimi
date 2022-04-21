@@ -1,14 +1,12 @@
 package depoYonetimi;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
-import static depoYonetimi.urunTanimlama.urunId;
+import static depoYonetimi.urunTanimlama.*;
 
 public class islemler {
     static Scanner scan=new Scanner(System.in);
-    static ArrayList<urunTanimlama> urunList=new ArrayList<>();
+    public static List<String> urunList= new ArrayList<>();
     public static void girisPaneli(){
         System.out.println("====================================\nDEPO YONETIM PANELI\n" +
                 "====================================\n"
@@ -20,19 +18,19 @@ public class islemler {
                 urunTanımla();
                 girisPaneli();
                 break;
-            case "2":
+            case "2": //Jasmina, zeynep
                 urunListele();
                 girisPaneli();
                 break;
-            case "3":
+            case "3": // oğuzhan, fatih
                 urunGirisi();
                 girisPaneli();
                 break;
-            case "4":
+            case "4"://gökhan, hüseyin
                 urunuRafaKoy();
                 girisPaneli();
                 break;
-            case "5":
+            case "5":// defne, şule
                 urunCikisi();
                 girisPaneli();
             break;
@@ -62,27 +60,30 @@ public class islemler {
     }
 
     private static void urunTanımla() {
+        //List<String> urunList= new ArrayList<>();
         //urunTanimlama 	==>  urunun ismi, ureticisi ve birimi girilecek. id  alınacak.
         System.out.println("ürün ismi giriniz: ");
-        String urunIsmi=scan.nextLine();
-
-        scan.next();
+        urunIsmi=scan.next();
+        urunList.add(urunIsmi);
+        //scan.next();
         System.out.println("üreticisini giriniz: ");
-        String uretici=scan.nextLine();
-
-        scan.next();
+        uretici=scan.next();
+        urunList.add(uretici);
+        //scan.next();
         System.out.println("birimi giriniz: ");
-        String birim=scan.nextLine();
+        birim=scan.next();
+        urunList.add(birim);
+        //scan.next();
 
-        scan.next();
         System.out.println("id giriniz: ");
-        String id=scan.nextLine();
-        scan.next();
-        urunTanimlama urunlerimiz=new urunTanimlama(id,urunIsmi,uretici,birim);
+        urunId=scan.nextInt();
 
-        urunList.add(urunlerimiz);
-        System.out.println(urunList.toString());
-       // urunListeYazdir();
+        Map<Integer, List> urunListesiMap = new HashMap<Integer,List>();
+
+        urunListesiMap.put(urunId,urunList);
+        System.out.println(urunListesiMap);
+
+
     }
 
 
