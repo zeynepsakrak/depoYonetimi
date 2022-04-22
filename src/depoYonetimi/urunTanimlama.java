@@ -2,12 +2,12 @@ package depoYonetimi;
 
 public class urunTanimlama {
 
-    static int urunId;
-    static String urunIsmi;
-    static String uretici;
-    static String birim;
-    static int urunMiktar;
-    static String raf;
+   public static int urunId;
+   public static String urunIsmi;
+   public static String uretici;
+   public static String birim;
+   public static int urunMiktar;
+   public static String raf;
 
     public urunTanimlama() {
 
