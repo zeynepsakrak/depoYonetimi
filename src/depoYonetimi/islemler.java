@@ -43,53 +43,24 @@ public class islemler {
     }
 
     private static void urunCikisi() {
-        urunListeYazdir();
+
     }
 
 
 
     private static void urunuRafaKoy() {
-        urunListeYazdir();
+
     }
 
     private static void urunGirisi() {
-        urunListeYazdir();
-    }
+        //urunGirisi 		==> giris yapmak istedigimiz urnunun id numarasi ile girecegiz.
+
+
+        }
+
 
     private static void urunListele() {
-        urunListeYazdir();
-    }
-
-    private static void urunTanımla() {
-        //List<String> urunList= new ArrayList<>();
-        //urunTanimlama 	==>  urunun ismi, ureticisi ve birimi girilecek. id  alınacak.
-        System.out.println("ürün ismi giriniz: ");
-        urunIsmi=scan.next();
-        urunList.add(urunIsmi);
-        //scan.next();
-        System.out.println("üreticisini giriniz: ");
-        uretici=scan.next();
-        urunList.add(uretici);
-        //scan.next();
-        System.out.println("birimi giriniz: ");
-        birim=scan.next();
-        urunList.add(birim);
-        //scan.next();
-
-        System.out.println("id giriniz: ");
-        urunId=scan.nextInt();
-
-        //Map<Integer, List> urunListesiMap = new HashMap<Integer,List>();
-
-        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim));
-        //System.out.println(urunListesiMap);
-
-
-    }
-
-
-    private static void urunListeYazdir() {
-       // System.out.println(urunListesiMap);
+        // System.out.println(urunListesiMap);
         Set<Integer> urunListKeySeti = urunListesiMap.keySet();
 
         List<Integer> keyList=new ArrayList<>();
@@ -110,7 +81,7 @@ public class islemler {
         // inner array'lerin boyutunu bulmak biraz daha kompleks olacak
 
         String ilkValue=urunValueList.get(0);
-       // System.out.println(ilkValue);
+        // System.out.println(ilkValue);
         String ilkValueArray[]=ilkValue.split(", ");
         int innerArrayBoyut=ilkValueArray.length;
 
@@ -132,8 +103,8 @@ public class islemler {
         // value'leri valueMDArr'e atadim
         // simdi bu key ve value'leri istedigim gibi manuple edebilirim
 
-        System.out.println("id\t\tismi \tureticisi\t\tbirimi");
-        System.out.println("=========================================");
+        System.out.println("id\t\tismi\t\tureticisi\t\tbirimi\t\tmiktar\t\traf");
+        System.out.println("========================================================");
         for (int i = 0; i <keyList.size() ; i++) {
             System.out.print( keyList.get(i)+ "\t\t");
             for (int j = 0; j < innerArrayBoyut; j++) {
@@ -143,6 +114,33 @@ public class islemler {
             System.out.println("");
         }
 
+    }
+
+    private static void urunTanımla() {
+        //List<String> urunList= new ArrayList<>();
+        //urunTanimlama 	==>  urunun ismi, ureticisi ve birimi girilecek. id  alınacak.
+        System.out.println("id giriniz: ");
+        urunId=scan.nextInt();
+
+        System.out.println("ürün ismi giriniz: ");
+        urunIsmi=scan.next();
+        urunList.add(urunIsmi);
+        //scan.next();
+
+        System.out.println("üreticisini giriniz: ");
+        uretici=scan.next();
+        urunList.add(uretici);
+        //scan.next();
+        System.out.println("birimi giriniz: ");
+        birim=scan.next();
+        urunList.add(birim);
+
+        //Map<Integer, List> urunListesiMap = new HashMap<Integer,List>();
+
+        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
+        //System.out.println(urunListesiMap);
+
 
     }
-}
+    }
+
