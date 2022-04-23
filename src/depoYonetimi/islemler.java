@@ -54,31 +54,38 @@ public class islemler {
 
     private static void urunGirisi() {
         //urunGirisi 		==> giris yapmak istedigimiz urnunun id numarasi ile girecegiz.
+        System.out.println("girmek istediğiniz ürünün id'sini yazınız: ");
+        urunId= scan.nextInt();
 
+        if(urunListesiMap.containsKey(urunId)){
+            System.out.println( urunListesiMap.get(urunId));
+            System.out.println("girmek istediğiniz miktarı yazınız: ");
+           urunMiktar= scan.nextInt();
+            System.out.println( urunListesiMap.get(urunId));
+            urunListesiMap.compute(urunId,(urunId,urunMiktar)->urunMiktar);
 
+        }else{
+            System.out.println("malesef girdiğiniz id bulunamadı");
         }
+        System.out.println( urunListesiMap.get(urunId));
+
+    }
+
+
 
 
     private static void urunListele() {
-        // System.out.println(urunListesiMap);
         Set<Integer> urunListKeySeti = urunListesiMap.keySet();
-
         List<Integer> keyList=new ArrayList<>();
         keyList.addAll(urunListKeySeti);
 
-
         Collection<String> urunListValueColl =urunListesiMap.values();
-        //System.out.println(urunListValueColl);
+
 
         List<String> urunValueList=new ArrayList<>();
         urunValueList.addAll(urunListValueColl);
 
-        //System.out.println(urunValueList);
-
         int outerArrayBoyut= urunValueList.size();
-
-
-        // inner array'lerin boyutunu bulmak biraz daha kompleks olacak
 
         String ilkValue=urunValueList.get(0);
         // System.out.println(ilkValue);
@@ -94,15 +101,9 @@ public class islemler {
 
                 valueMDArr[i][j]=temp[j];
 
-
             }
 
         }
-
-        // bu satira kadar key'leri index ile ulasabildigim keyList' e atadim
-        // value'leri valueMDArr'e atadim
-        // simdi bu key ve value'leri istedigim gibi manuple edebilirim
-
         System.out.println("id\t\tismi\t\tureticisi\t\tbirimi\t\tmiktar\t\traf");
         System.out.println("========================================================");
         for (int i = 0; i <keyList.size() ; i++) {
