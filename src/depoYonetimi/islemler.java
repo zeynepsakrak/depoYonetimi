@@ -59,16 +59,16 @@ public class islemler {
         urunId= scan.nextInt();
 
         if(urunListesiMap.containsKey(urunId)){
-            System.out.println( urunListesiMap.get(urunId));
             System.out.println("girmek istediğiniz miktarı yazınız: ");
-            urunMiktar= scan.nextInt();
-            System.out.println( urunListesiMap.get(urunId));
-            urunListesiMap.compute(urunId,(urunId,urunMiktar)-> urunMiktar);
+            int yeniurunMiktar= scan.nextInt();
+            urunMiktar+=yeniurunMiktar;
+            urunListesiMap.compute(urunId, (key, val) -> String.valueOf(urunMiktar));
 
         }else{
             System.out.println("malesef girdiğiniz id bulunamadı");
         }
-        System.out.println( urunListesiMap.get(urunId));
+        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
+        urunListele();
 
     }
 
