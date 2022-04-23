@@ -44,13 +44,39 @@ public class islemler {
     }
 
     private static void urunCikisi() {
+        System.out.println("çıkışını yapmak istediğiniz ürünün id'sini yazınız: ");
+        urunId= scan.nextInt();
+
+        if(urunListesiMap.containsKey(urunId)){
+            System.out.println("girmek istediğiniz miktarı yazınız: ");
+            int yeniurunMiktar= scan.nextInt();
+            urunMiktar-=yeniurunMiktar;
+            urunListesiMap.compute(urunId, (key, val) -> String.valueOf(urunMiktar));
+
+        }else{
+            System.out.println("malesef girdiğiniz id de ürün bulunamadı");
+        }
+        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
+        urunListele();
 
     }
 
 
 
     private static void urunuRafaKoy() {
+        System.out.println("rafa koymak istediğiniz ürünün id'sini yazınız: ");
+        urunId= scan.nextInt();
 
+        if(urunListesiMap.containsKey(urunId)){
+            System.out.println("hangi rafa koymak istediğinizi yazınız: ");
+           raf=scan.next();
+            urunListesiMap.compute(urunId, (key, val) -> raf);
+
+        }else{
+            System.out.println("malesef girdiğiniz id de ürün bulunamadı");
+        }
+        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
+        urunListele();
     }
 
     private static void urunGirisi() {
