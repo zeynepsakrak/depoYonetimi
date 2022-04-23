@@ -88,12 +88,30 @@ public class islemler {
             System.out.println("girmek istediğiniz miktarı yazınız: ");
             int yeniurunMiktar= scan.nextInt();
             urunMiktar+=yeniurunMiktar;
-            urunListesiMap.compute(urunId, (key, val) -> String.valueOf(urunMiktar));
+            Set<Map.Entry<Integer,String>> urunEntrySet= urunListesiMap.entrySet();
+
+            for (Map.Entry<Integer,String> each: urunEntrySet
+            ) {
+
+                Integer keyEntry=each.getKey();
+                String valueEntry= each.getValue();
+                String valueArr[]= valueEntry.split(", ");
+                valueArr[3]= String.valueOf(urunMiktar);
+
+                String valueYeni= valueArr[0] + ", " + valueArr[1] + ", " + valueArr[2] + ", "
+                        + valueArr[3]+ ", " + valueArr[4];
+
+                urunListesiMap.compute(urunId,(k,v)->valueArr[3]);
+            }
+
+            //urunMiktar+=yeniurunMiktar;
+           // urunListesiMap.compute(urunId, (key, val) -> String.valueOf(urunMiktar));
+
 
         }else{
             System.out.println("malesef girdiğiniz id bulunamadı");
         }
-        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
+        //urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
         urunListele();
 
     }
