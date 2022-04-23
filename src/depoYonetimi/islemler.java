@@ -3,6 +3,7 @@ package depoYonetimi;
 import java.util.*;
 
 import static depoYonetimi.urunTanimlama.*;
+import static depoYonetimi.urunTanimlama.urunMiktar;
 
 public class islemler {
     static Scanner scan=new Scanner(System.in);
@@ -60,9 +61,9 @@ public class islemler {
         if(urunListesiMap.containsKey(urunId)){
             System.out.println( urunListesiMap.get(urunId));
             System.out.println("girmek istediğiniz miktarı yazınız: ");
-           urunMiktar= scan.nextInt();
+            urunMiktar= scan.nextInt();
             System.out.println( urunListesiMap.get(urunId));
-            urunListesiMap.compute(urunId,(urunId,urunMiktar)->urunMiktar);
+            urunListesiMap.compute(urunId,(urunId,urunMiktar)-> urunMiktar);
 
         }else{
             System.out.println("malesef girdiğiniz id bulunamadı");
