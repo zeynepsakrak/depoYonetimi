@@ -1,6 +1,7 @@
 package depoYonetimi;
 
 
+import java.util.Locale;
 
 public class urunTanimlama {
     private String urunIsmi;
@@ -23,7 +24,7 @@ public class urunTanimlama {
 
 
     public String getUrunIsmi() {
-        return urunIsmi;
+        return urunIsmi.toLowerCase();
     }
 
     public void setUrunIsmi(String urunIsmi) {
@@ -32,7 +33,7 @@ public class urunTanimlama {
 
     public String getUretici() {
 
-        return uretici;
+        return uretici.toLowerCase();
     }
 
     public void setUretici(String uretici) {
@@ -40,7 +41,7 @@ public class urunTanimlama {
     }
 
     public String getBirim() {
-        return birim;
+        return birim.toLowerCase();
     }
 
     public void setBirim(String birim) {

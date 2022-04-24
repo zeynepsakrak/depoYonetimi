@@ -3,7 +3,6 @@ import java.util.*;
 
 public class islemler {
     static Scanner scan = new Scanner(System.in);
-    public static List<String> urunList = new ArrayList<>();
     public static Map<Integer, urunTanimlama> urunListesiMap = new HashMap<Integer, urunTanimlama>();
     public static int urunId = 1000;
 
@@ -49,6 +48,7 @@ public class islemler {
     }
 
     private static void urunTanimla() {
+        System.out.println("   ********* urun tanımlama sayfası *********");
         System.out.println("ürün ismi giriniz: ");
         String urunIsmi = scan.next();
 
@@ -57,11 +57,6 @@ public class islemler {
 
         System.out.println("birimi giriniz: ");
         String birim = scan.next();
-/*
-
-*/
-        //System.out.println("raf giriniz: ");
-        //String raf = scan.next();
 
         int urunMiktar=0;
         String raf=" - ";
@@ -74,21 +69,31 @@ public class islemler {
     }
 
     private static void urunCikisi() {
-        System.out.println("   ***      urun icin cıkarma sayfası     ***");
-
+        System.out.println("   ********* urun çıkış sayfası ********* ");
         System.out.print("Cıkısını yapmak  istediginiz urunun ID sini giriniz : ");
 
         int arananId = scan.nextInt();
         if (urunListesiMap.keySet().contains(arananId)) {
             System.out.println("miktar giriniz");
-            int guncelmiktar = scan.nextInt();
+            int guncelmiktar = 0;
+            boolean flag = true;
+            do {
+                try {
+                    if (flag == true) { scan.nextLine(); }
+                    guncelmiktar = scan.nextInt();
+                    scan.nextLine();//dummy
+                    flag = false;
+                } catch (Exception e) {
+                    System.out.println("lütfen geçerli bir tamsayı giriniz");
+                }
+            } while (flag);
           int sonuc=urunListesiMap.get(arananId).getUrunMiktar()-guncelmiktar;
 
            if (sonuc<0){
-              System.out.println("deponuzda bu miktarda ürün yoktur.");
+              System.out.println("deponuzda bu miktarda ürün yoktur.\n bulunan miktar: "+urunListesiMap.get(arananId).getUrunMiktar());
            }else{
               urunListesiMap.get(arananId).setUrunMiktar(sonuc);
-              System.out.println("urun miktarınız güncel hale getirildi");
+              System.out.println("urun miktarınız güncel hale getirildi\n güncel miktar: "+urunListesiMap.get(arananId).getUrunMiktar());
            }
 
         } else {
@@ -97,7 +102,7 @@ public class islemler {
     }
 
     private static void urunuRafaKoy() {
-        System.out.println("   ***      urun icin raf sayfası     ***");
+        System.out.println("   ********* urunu rafa ekleme sayfası ********* ");
         System.out.print("Rafa yerlestirmek istediginiz urunun ID sini giriniz : ");
         int arananId=scan.nextInt();
         if (urunListesiMap.keySet().contains(arananId)){
@@ -113,7 +118,8 @@ public class islemler {
     }
 
     private static void urunGirisi() {
-        //urunGirisi 		==> giris yapmak istedigimiz urnunun id numarasi ile girecegiz.
+        System.out.println("   ********* urun giriş sayfası ********* ");
+
         System.out.println("güncellemek istediğiniz ürün id si giriniz:");
         int arananId = scan.nextInt();
         if (urunListesiMap.keySet().contains(arananId)) {
@@ -121,7 +127,6 @@ public class islemler {
             int guncelmiktar = 0;
             boolean flag = true;
             do {
-                //guncelmiktar = 0;
                 try {
                     if (flag == true) { scan.nextLine(); }
                     guncelmiktar = scan.nextInt();
@@ -138,18 +143,7 @@ public class islemler {
             System.out.println("aradığınız ürün yoktur");
         }
     }
-    /*
-   while (notInt == 0){
-    try {
-        newInput=Integer.parseInt(scan.nextLine());
-        userInput=newInput;
-        notInt=1;
-    }
-    catch(NumberFormatException e){
-        System.out.println("That is not an integer, please try again." );
-    }
-}
-     */
+
     private static void urunListele() {
 
         Set<Map.Entry<Integer,urunTanimlama>> urunEntrySeti = urunListesiMap.entrySet();
