@@ -67,7 +67,7 @@ public class urunTanimlama {
     }
 
    @Override
-   public String toString() {
+   public String toString() {  //obje değerlerini düzenli yazmak için
        return "urunleriniz" +
                ", urunIsmi='" + urunIsmi + '\'' +
                ", uretici='" + uretici + '\'' +
