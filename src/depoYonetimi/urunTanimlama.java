@@ -1,90 +1,76 @@
 package depoYonetimi;
 
-public class urunTanimlama {
 
-   public static int urunId;
-   public static String urunIsmi;
-   public static String uretici;
-   public static String birim;
-   public static int urunMiktar;
-   public static String raf;
+
+public class urunTanimlama {
+    private String urunIsmi;
+   private String uretici;
+   private String birim;
+   private int urunMiktar;
+   private String raf;
 
     public urunTanimlama() {
 
     }
 
-    public urunTanimlama(int urunId, String urunIsmi, String uretici, String birim, int urunMiktar, String raf) {
-      this.urunId=urunId;
+    public urunTanimlama(String urunIsmi, String uretici, String birim, int urunMiktar, String raf) {
       this.urunIsmi=urunIsmi;
       this.uretici=uretici;
       this.birim=birim;
       this.urunMiktar=urunMiktar;
       this.raf=raf;
     }
-    public urunTanimlama(int urunId, String urunIsmi, String uretici, String birim) {
-        this.urunId=urunId;
-        this.urunIsmi=urunIsmi;
-        this.uretici=uretici;
-        this.birim=birim;
-    }
 
-    public static int getUrunId() {
-        return urunId;
-    }
 
-    public static void setUrunId(int urunId) {
-        urunTanimlama.urunId = urunId;
-    }
-
-    public static String getUrunIsmi() {
+    public String getUrunIsmi() {
         return urunIsmi;
     }
 
-    public static void setUrunIsmi(String urunIsmi) {
-        urunTanimlama.urunIsmi = urunIsmi;
+    public void setUrunIsmi(String urunIsmi) {
+        this.urunIsmi = urunIsmi;
     }
 
-    public static String getUretici() {
+    public String getUretici() {
         return uretici;
     }
 
-    public static void setUretici(String uretici) {
-        urunTanimlama.uretici = uretici;
+    public void setUretici(String uretici) {
+        this.uretici = uretici;
     }
 
-    public static String getBirim() {
+    public String getBirim() {
         return birim;
     }
 
-    public static void setBirim(String birim) {
-        urunTanimlama.birim = birim;
+    public void setBirim(String birim) {
+        this.birim = birim;
     }
 
-    public static int getUrunMiktar() {
+    public int getUrunMiktar() {
         return urunMiktar;
     }
 
-    public static void setUrunMiktar(int urunMiktar) {
-        urunTanimlama.urunMiktar = urunMiktar;
+    public int setUrunMiktar(int urunMiktar) {
+        this.urunMiktar = urunMiktar;
+        return urunMiktar;
     }
 
-    public static String getRaf() {
+    public String getRaf() {
         return raf;
     }
 
-    public static void setRaf(String raf) {
-        urunTanimlama.raf = raf;
+    public void setRaf(String raf) {
+        this.raf = raf;
     }
 
     @Override
     public String toString() {
-        return "urunTanimlama{" +
-                "urunId='" + urunId + '\'' +
+        return "urunleriniz" +
                 ", urunIsmi='" + urunIsmi + '\'' +
                 ", uretici='" + uretici + '\'' +
                 ", birim='" + birim + '\'' +
-                ", urunMiktar=" + urunMiktar +
-                '}';
+                ", Miktar=" + urunMiktar + '\'' +
+                ", raf=" + raf+ '\'' + '\n' ;
     }
 
 }

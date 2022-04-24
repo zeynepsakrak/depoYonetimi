@@ -2,191 +2,143 @@ package depoYonetimi;
 
 import java.util.*;
 
-import static depoYonetimi.urunTanimlama.*;
-import static depoYonetimi.urunTanimlama.urunMiktar;
+
 
 public class islemler {
-    static Scanner scan=new Scanner(System.in);
-    public static List<String> urunList= new ArrayList<>();
-    public static  Map<Integer,String> urunListesiMap = new HashMap<Integer,String>();
-    public static void girisPaneli(){
+    static Scanner scan = new Scanner(System.in);
+    public static List<String> urunList = new ArrayList<>();
+    public static Map<Integer, urunTanimlama> urunListesiMap = new HashMap<Integer, urunTanimlama>();
+    public static int urunId = 1000;
+
+    public static void girisPaneli() {
         System.out.println("====================================\nDEPO YONETIM PANELI\n" +
                 "====================================\n"
-                + "1- URUN TANIMLAMA\n2- URUN LİSTELE\n3- URUN GİRİŞİ\n4- URUNU RAFA KOY\n5- URUN ÇIKIŞI");
+                + "1- URUN TANIMLAMA\n2- URUN LİSTELE\n3- URUN GİRİŞİ\n4- URUNU RAFA KOY\n5- URUN ÇIKIŞI\n6- DEPODAN ÇIKIŞ");
         System.out.print("isleminiz seciniz : ");
-        String secim= scan.next().toUpperCase(Locale.ROOT);
-        switch (secim){
+        String secim = scan.next().toUpperCase(Locale.ROOT);
+        switch (secim) {
             case "1":
-                urunTanımla();
+                urunTanimla();
                 girisPaneli();
                 break;
-            case "2": //Jasmina, zeynep, merve
+            case "2":
                 urunListele();
                 girisPaneli();
                 break;
-            case "3": // oğuzhan, fatih
+            case "3":
                 urunGirisi();
                 girisPaneli();
                 break;
-            case "4"://gökhan, hüseyin
+            case "4":
                 urunuRafaKoy();
                 girisPaneli();
                 break;
-            case "5":// defne, şule
+            case "5":
                 urunCikisi();
                 girisPaneli();
-            break;
+                break;
+            case "6":
+                cikis();
+                break;
             default:
-                System.out.println("hatalı giriş yapınız");
+                System.out.println("hatalı giriş yaptınız, tekrar deneyiniz. ");
                 girisPaneli();
                 break;
         }
     }
 
-    private static void urunCikisi() {
-        System.out.println("çıkışını yapmak istediğiniz ürünün id'sini yazınız: ");
-        urunId= scan.nextInt();
+    private static void cikis() {
+        System.out.println(" depo dan çıkış yaptınız. tekrar bekleriz..");
+    }
 
-        if(urunListesiMap.containsKey(urunId)){
-            System.out.println("girmek istediğiniz miktarı yazınız: ");
-            int yeniurunMiktar= scan.nextInt();
-            urunMiktar-=yeniurunMiktar;
-            urunListesiMap.compute(urunId, (key, val) -> String.valueOf(urunMiktar));
+    private static void urunTanimla() {
+        System.out.println("ürün ismi giriniz: ");
+        String urunIsmi = scan.next();
 
-        }else{
-            System.out.println("malesef girdiğiniz id de ürün bulunamadı");
-        }
-        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
-        urunListele();
+        System.out.println("üreticisini giriniz: ");
+        String uretici = scan.next();
+
+        System.out.println("birimi giriniz: ");
+        String birim = scan.next();
+
+        System.out.println("miktar giriniz: ");
+        int urunMiktar = scan.nextInt();
+
+        System.out.println("raf giriniz: ");
+        String raf = scan.next();
+
+        urunTanimlama urun = new urunTanimlama(urunIsmi, uretici, birim, urunMiktar, raf);
+        urunListesiMap.put(urunId, urun);
+
+        urunId++;
 
     }
 
+    private static void urunCikisi() {
+        System.out.println("   ***      urun icin cıkarma sayfası     ***");
 
+        System.out.print("Cıkısını yapmak  istediginiz urunun ID sini giriniz : ");
+
+        int arananId = scan.nextInt();
+        if (urunListesiMap.keySet().contains(arananId)) {
+            System.out.println("miktar giriniz");
+            int guncelmiktar = scan.nextInt();
+          int sonuc=urunListesiMap.get(arananId).getUrunMiktar()-guncelmiktar;
+
+           if (sonuc<0){
+              System.out.println("deponuzda bu miktarda ürün yoktur.");
+           }else{
+              urunListesiMap.get(arananId).setUrunMiktar(sonuc);
+              System.out.println("urun miktarınız güncel hale getirildi");
+           }
+
+        } else {
+            System.out.println("aradığınız ürün yoktur");
+        }
+    }
 
     private static void urunuRafaKoy() {
-        System.out.println("rafa koymak istediğiniz ürünün id'sini yazınız: ");
-        urunId= scan.nextInt();
+        System.out.println("   ***      urun icin raf sayfası     ***");
+        System.out.print("Rafa yerlestirmek istediginiz urunun ID sini giriniz : ");
+        int arananId=scan.nextInt();
+        if (urunListesiMap.keySet().contains(arananId)){
+            System.out.println("hangi rafa kaldıracağınızı yazınız:");
+            String guncelraf = scan.next();
 
-        if(urunListesiMap.containsKey(urunId)){
-            System.out.println("hangi rafa koymak istediğinizi yazınız: ");
-           raf=scan.next();
-            urunListesiMap.compute(urunId, (key, val) -> raf);
+            urunListesiMap.get(arananId).setRaf(guncelraf);
 
         }else{
-            System.out.println("malesef girdiğiniz id de ürün bulunamadı");
+            System.out.println("bu ürün depoda mevcut değildir malesef ");
         }
-        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
-        urunListele();
+
     }
 
     private static void urunGirisi() {
         //urunGirisi 		==> giris yapmak istedigimiz urnunun id numarasi ile girecegiz.
-        System.out.println("girmek istediğiniz ürünün id'sini yazınız: ");
-        urunId= scan.nextInt();
-
-        if(urunListesiMap.containsKey(urunId)){
-            System.out.println("girmek istediğiniz miktarı yazınız: ");
-            int yeniurunMiktar= scan.nextInt();
-            urunMiktar+=yeniurunMiktar;
-            Set<Map.Entry<Integer,String>> urunEntrySet= urunListesiMap.entrySet();
-
-            for (Map.Entry<Integer,String> each: urunEntrySet
-            ) {
-
-                Integer keyEntry=each.getKey();
-                String valueEntry= each.getValue();
-                String valueArr[]= valueEntry.split(", ");
-                valueArr[3]= String.valueOf(urunMiktar);
-
-                String valueYeni= valueArr[0] + ", " + valueArr[1] + ", " + valueArr[2] + ", "
-                        + valueArr[3]+ ", " + valueArr[4];
-
-                urunListesiMap.compute(urunId,(k,v)->valueArr[3]);
-            }
-
-            //urunMiktar+=yeniurunMiktar;
-           // urunListesiMap.compute(urunId, (key, val) -> String.valueOf(urunMiktar));
-
-
-        }else{
-            System.out.println("malesef girdiğiniz id bulunamadı");
+        System.out.println("güncellemek istediğiniz ürün id si giriniz:");
+        int arananId = scan.nextInt();
+        if (urunListesiMap.keySet().contains(arananId)) {
+            System.out.println("miktar giriniz");
+            int guncelmiktar = scan.nextInt();
+            urunListesiMap.get(arananId).setUrunMiktar(guncelmiktar + urunListesiMap.get(arananId).getUrunMiktar());
+            System.out.println("urun miktarınız güncel hale getirildi");
+        } else {
+            System.out.println("aradığınız ürün yoktur");
         }
-        //urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
-        urunListele();
-
     }
-
-
-
 
     private static void urunListele() {
-        Set<Integer> urunListKeySeti = urunListesiMap.keySet();
-        List<Integer> keyList=new ArrayList<>();
-        keyList.addAll(urunListKeySeti);
-
-        Collection<String> urunListValueColl =urunListesiMap.values();
-
-
-        List<String> urunValueList=new ArrayList<>();
-        urunValueList.addAll(urunListValueColl);
-
-        int outerArrayBoyut= urunValueList.size();
-
-        String ilkValue=urunValueList.get(0);
-        // System.out.println(ilkValue);
-        String ilkValueArray[]=ilkValue.split(", ");
-        int innerArrayBoyut=ilkValueArray.length;
-
-
-        String valueMDArr[][]=new String[outerArrayBoyut][innerArrayBoyut];
-
-        for (int i = 0; i <outerArrayBoyut ; i++) {
-            String temp[]=urunValueList.get(i).split(", ");
-            for (int j = 0; j <innerArrayBoyut ; j++) {
-
-                valueMDArr[i][j]=temp[j];
-
-            }
-
+        System.out.println("---------------------------ÜRÜN LİSTESİ---------------------------------");
+        System.out.println("id       ismi         ureticisi       birim       miktar         raf" +
+                "\n----------------------------------------------------------------------");
+        System.out.println(urunListesiMap);
+        //for (int i = 0; i <urunListesiMap.size() ; i++) {
+        //    System.out.printf( "%d    %-8s       %-14s  %-14s         %3d %s",1000,urunListesiMap.get(i).getUrunIsmi(),urunListesiMap.get(i).getUretici(),urunListesiMap.get(i).getBirim(),urunListesiMap.get(i).getUrunMiktar(),urunListesiMap.get(i).getRaf());
+        //    System.out.println("");
+        //}
         }
-        System.out.println("id\t\tismi\t\tureticisi\t\tbirimi\t\tmiktar\t\traf");
-        System.out.println("========================================================");
-        for (int i = 0; i <keyList.size() ; i++) {
-            System.out.print( keyList.get(i)+ "\t\t");
-            for (int j = 0; j < innerArrayBoyut; j++) {
-                System.out.print(valueMDArr[i][j] + "\t\t");
-            }
-
-            System.out.println("");
-        }
-
     }
 
-    private static void urunTanımla() {
-        //List<String> urunList= new ArrayList<>();
-        //urunTanimlama 	==>  urunun ismi, ureticisi ve birimi girilecek. id  alınacak.
-        System.out.println("id giriniz: ");
-        urunId=scan.nextInt();
-
-        System.out.println("ürün ismi giriniz: ");
-        urunIsmi=scan.next();
-        urunList.add(urunIsmi);
-        //scan.next();
-
-        System.out.println("üreticisini giriniz: ");
-        uretici=scan.next();
-        urunList.add(uretici);
-        //scan.next();
-        System.out.println("birimi giriniz: ");
-        birim=scan.next();
-        urunList.add(birim);
-
-        //Map<Integer, List> urunListesiMap = new HashMap<Integer,List>();
-
-        urunListesiMap.put(urunId,(urunIsmi+", "+uretici+", "+birim+", "+urunMiktar+", "+raf));
-        //System.out.println(urunListesiMap);
 
 
-    }
-    }
 
