@@ -10,7 +10,7 @@ public class islemler {
     public static void girisPaneli() {
         System.out.println("====================================\nDEPO YONETIM PANELI\n" +
                 "====================================\n"
-                + "1- URUN TANIMLAMA\n2- URUN LİSTELE\n3- URUN GİRİŞİ\n4- URUNU RAFA KOY\n5- URUN ÇIKIŞI\n6- DEPODAN ÇIKIŞ");
+                + "1- BULUNDURULACAK URUN TANIMLAMA\n2- URUN LİSTELE\n3- DEPOYA URUN GİRİŞİ\n4- URUNU RAFA KOY\n5- DEPODAN URUN ÇIKIŞI\n6- DEPO SİSTEMİNDEN ÇIKIŞ");
         System.out.print("lütfen işlem seciniz : ");
         String secim = scan.next().toUpperCase(Locale.ROOT);
         switch (secim) {
@@ -18,19 +18,19 @@ public class islemler {
                 urunTanimla();
                 girisPaneli();
                 break;
-            case "2":
+            case "2"://Jasmina, zeynep, merve
                 urunListele();
                 girisPaneli();
                 break;
-            case "3":
+            case "3":// oğuzhan, fatih
                 urunGirisi();
                 girisPaneli();
                 break;
-            case "4":
+            case "4"://gökhan, hüseyin
                 urunuRafaKoy();
                 girisPaneli();
                 break;
-            case "5":
+            case "5":// defne, şule
                 urunCikisi();
                 girisPaneli();
                 break;
@@ -126,6 +126,7 @@ public class islemler {
 
         } else {
             System.out.println("bu ürün depoda mevcut değildir malesef ");
+            urunuRafaKoy();
         }
 
     }
@@ -152,12 +153,11 @@ public class islemler {
                     System.out.println("lütfen geçerli bir tamsayı giriniz");
                 }
             } while (flag);
-            int sonuc = urunListesiMap.get(arananId).getUrunMiktar() - guncelmiktar;
 
-            if (sonuc < 0) {
+            if ( urunListesiMap.get(arananId).getUrunMiktar() - guncelmiktar < 0) {
                 System.out.println("deponuzda bu miktarda ürün yoktur.\n bulunan miktar: " + urunListesiMap.get(arananId).getUrunMiktar());
             } else {
-                urunListesiMap.get(arananId).setUrunMiktar(sonuc);
+                urunListesiMap.get(arananId).setUrunMiktar( urunListesiMap.get(arananId).getUrunMiktar() - guncelmiktar);
                 System.out.println("urun miktarınız güncel hale getirildi\n güncel miktar: " + urunListesiMap.get(arananId).getUrunMiktar());
             }
 
