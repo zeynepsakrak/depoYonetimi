@@ -63,14 +63,14 @@ public class urunTanimlama {
         this.raf = raf;
     }
 
-    @Override
-    public String toString() {
-        return "urunleriniz" +
-                ", urunIsmi='" + urunIsmi + '\'' +
-                ", uretici='" + uretici + '\'' +
-                ", birim='" + birim + '\'' +
-                ", Miktar=" + urunMiktar + '\'' +
-                ", raf=" + raf+ '\'' + '\n' ;
-    }
+   @Override
+   public String toString() {
+       return "urunleriniz" +
+               ", urunIsmi='" + urunIsmi + '\'' +
+               ", uretici='" + uretici + '\'' +
+               ", birim='" + birim + '\'' +
+               ", Miktar=" + urunMiktar + '\'' +
+               ", raf=" + raf+ '\'' + '\n' ;
+   }
 
 }

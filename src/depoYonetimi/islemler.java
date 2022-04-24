@@ -128,15 +128,33 @@ public class islemler {
     }
 
     private static void urunListele() {
+
+        Set<Map.Entry<Integer,urunTanimlama>> urunEntrySeti = urunListesiMap.entrySet();
         System.out.println("---------------------------ÜRÜN LİSTESİ---------------------------------");
         System.out.println("id       ismi         ureticisi       birim       miktar         raf" +
                 "\n----------------------------------------------------------------------");
-        System.out.println(urunListesiMap);
-        //for (int i = 0; i <urunListesiMap.size() ; i++) {
-        //    System.out.printf( "%d    %-8s       %-14s  %-14s         %3d %s",1000,urunListesiMap.get(i).getUrunIsmi(),urunListesiMap.get(i).getUretici(),urunListesiMap.get(i).getBirim(),urunListesiMap.get(i).getUrunMiktar(),urunListesiMap.get(i).getRaf());
-        //    System.out.println("");
-        //}
+       //System.out.println(urunListesiMap);
+       //for (urunTanimlama e:urunListesiMap) {
+
+       //}
+       //for (int i = 0; i <urunListesiMap.size() ; i++) {
+       //   System.out.println(urunListesiMap.get(i).getUrunIsmi()+urunListesiMap.get(i).getUretici()+urunListesiMap.get(i).getBirim()+urunListesiMap.get(i).getUrunMiktar()+urunListesiMap.get(i).getRaf());
+       //   System.out.println("");
+       //}
+
+
+        for (Map.Entry<Integer,urunTanimlama> e: urunEntrySeti
+        ) {
+
+            Integer entryKey= e.getKey();
+
+
+            System.out.printf( "%-8d %-12s %-15s %-12s %-12d %-9s\n" , entryKey, urunListesiMap.get(entryKey).getUrunIsmi(),urunListesiMap.get(entryKey).getUretici(),urunListesiMap.get(entryKey).getBirim(),urunListesiMap.get(entryKey).getUrunMiktar(),urunListesiMap.get(entryKey).getRaf());
+
+
         }
+
+    }
     }
 
 
