@@ -10,7 +10,7 @@ public class islemler {
         System.out.println("====================================\nDEPO YONETIM PANELI\n" +
                 "====================================\n"
                 + "1- URUN TANIMLAMA\n2- URUN LİSTELE\n3- URUN GİRİŞİ\n4- URUNU RAFA KOY\n5- URUN ÇIKIŞI\n6- DEPODAN ÇIKIŞ");
-        System.out.print("isleminiz seciniz : ");
+        System.out.print("lütfen işlem seciniz : ");
         String secim = scan.next().toUpperCase(Locale.ROOT);
         switch (secim) {
             case "1":
@@ -50,14 +50,15 @@ public class islemler {
     private static void urunTanimla() {
         System.out.println("   ********* urun tanımlama sayfası *********");
         System.out.println("ürün ismi giriniz: ");
+        scan.nextLine();//dummy
         String urunIsmi = scan.nextLine();
-        scan.next();//dummy
+
         System.out.println("üreticisini giriniz: ");
         String uretici = scan.nextLine();
-        scan.next();//dummy
+
         System.out.println("birimi giriniz: ");
-        String birim = scan.nextLine();
-        scan.next();//dummy
+        String birim = scan.next();
+
         int urunMiktar=0;
         String raf=" - ";
 
