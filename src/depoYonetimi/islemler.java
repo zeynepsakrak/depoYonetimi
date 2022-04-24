@@ -50,14 +50,14 @@ public class islemler {
     private static void urunTanimla() {
         System.out.println("   ********* urun tanımlama sayfası *********");
         System.out.println("ürün ismi giriniz: ");
-        String urunIsmi = scan.next();
-
+        String urunIsmi = scan.nextLine();
+        scan.next();//dummy
         System.out.println("üreticisini giriniz: ");
-        String uretici = scan.next();
-
+        String uretici = scan.nextLine();
+        scan.next();//dummy
         System.out.println("birimi giriniz: ");
-        String birim = scan.next();
-
+        String birim = scan.nextLine();
+        scan.next();//dummy
         int urunMiktar=0;
         String raf=" - ";
 
