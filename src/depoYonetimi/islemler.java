@@ -1,8 +1,5 @@
 package depoYonetimi;
-
 import java.util.*;
-
-
 
 public class islemler {
     static Scanner scan = new Scanner(System.in);
@@ -60,12 +57,14 @@ public class islemler {
 
         System.out.println("birimi giriniz: ");
         String birim = scan.next();
+/*
 
-        System.out.println("miktar giriniz: ");
-        int urunMiktar = scan.nextInt();
+*/
+        //System.out.println("raf giriniz: ");
+        //String raf = scan.next();
 
-        System.out.println("raf giriniz: ");
-        String raf = scan.next();
+        int urunMiktar=0;
+        String raf=" - ";
 
         urunTanimlama urun = new urunTanimlama(urunIsmi, uretici, birim, urunMiktar, raf);
         urunListesiMap.put(urunId, urun);
@@ -119,14 +118,38 @@ public class islemler {
         int arananId = scan.nextInt();
         if (urunListesiMap.keySet().contains(arananId)) {
             System.out.println("miktar giriniz");
-            int guncelmiktar = scan.nextInt();
+            int guncelmiktar = 0;
+            boolean flag = true;
+            do {
+                //guncelmiktar = 0;
+                try {
+                    if (flag == true) { scan.nextLine(); }
+                    guncelmiktar = scan.nextInt();
+                    scan.nextLine();//dummy
+                    flag = false;
+                } catch (Exception e) {
+                    System.out.println("lütfen geçerli bir giris yapınız");
+                }
+            } while (flag);
+
             urunListesiMap.get(arananId).setUrunMiktar(guncelmiktar + urunListesiMap.get(arananId).getUrunMiktar());
             System.out.println("urun miktarınız güncel hale getirildi");
         } else {
             System.out.println("aradığınız ürün yoktur");
         }
     }
-
+    /*
+   while (notInt == 0){
+    try {
+        newInput=Integer.parseInt(scan.nextLine());
+        userInput=newInput;
+        notInt=1;
+    }
+    catch(NumberFormatException e){
+        System.out.println("That is not an integer, please try again." );
+    }
+}
+     */
     private static void urunListele() {
 
         Set<Map.Entry<Integer,urunTanimlama>> urunEntrySeti = urunListesiMap.entrySet();

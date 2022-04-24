@@ -31,6 +31,7 @@ public class urunTanimlama {
     }
 
     public String getUretici() {
+
         return uretici;
     }
 
@@ -47,6 +48,7 @@ public class urunTanimlama {
     }
 
     public int getUrunMiktar() {
+
         return urunMiktar;
     }
 
