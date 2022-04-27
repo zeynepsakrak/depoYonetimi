@@ -18,19 +18,19 @@ public class islemler {
                 urunTanimla();
                 girisPaneli();
                 break;
-            case "2"://Jasmina, zeynep, merve
+            case "2":
                 urunListele();
                 girisPaneli();
                 break;
-            case "3":// oğuzhan, fatih
+            case "3":
                 urunGirisi();
                 girisPaneli();
                 break;
-            case "4"://gökhan, hüseyin
+            case "4":
                 urunuRafaKoy();
                 girisPaneli();
                 break;
-            case "5":// defne, şule
+            case "5":
                 urunCikisi();
                 girisPaneli();
                 break;
@@ -110,6 +110,7 @@ public class islemler {
             System.out.println("urun miktarınız güncel hale getirildi\n güncel miktar: " + urunListesiMap.get(arananId).getUrunMiktar());
         } else {
             System.out.println("aradığınız ürün yoktur");
+            urunGirisi();
         }
     }
 
